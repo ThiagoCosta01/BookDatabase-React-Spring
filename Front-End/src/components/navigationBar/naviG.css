@@ -1,0 +1,69 @@
+:root {
+    --btn-shadow: 2px 1px 0px #0000004d;
+}
+
+.navBar {
+    display: flex;
+    position: absolute;
+    width: 100%;
+    height: 44px;
+    justify-content: space-between;
+    background-color: #d9d9d9;
+    align-items: center;
+}
+.buttonsBox {
+    display: flex;
+}
+.menuBtnBox-Button {
+    position: fixed;
+    padding: 10px 5px 10px 5px ;
+    border: none;
+    border-radius: 0px 10px 10px 0px;
+    background-color: #d19292;
+    box-shadow: var(--btn-shadow);
+}
+.myBooksBtnBox-Button {
+    padding: 10px 45px 10px 70px;
+    border-radius: 0 10px 10px 0;
+    border: none;
+    background-color: #f8c0c0;
+    box-shadow: var(--btn-shadow);
+}
+.myBooksBtnBox-Button:hover,.menuBtnBox-Button:hover {
+    cursor: pointer;
+    color: white;
+}
+
+.searchBox {
+    display: flex;
+    margin: 0px 0 0px 400px;
+    padding: 11px 40px 11px 10px;
+    box-shadow: 5px 0px #00000053;
+    border-radius: 25px;
+}
+.searchBox-input {
+    width: 500px;
+    border-radius: 10px;
+    border:none;
+    background-color: none;
+}
+.registerBox {
+    display: flex;
+}
+.registerBox-login>button,.registerBox-register>button {
+    border: none;
+    background: none;
+}
+.registerBox-login>button:hover , .registerBox-register>button:hover {
+    border: none;
+    background: none;
+    color: #fff;
+}
+.aboutBtnBox-button {
+    display: flex;
+    margin-right: 10px;
+    border-radius: 20px;
+    background-color: #d19292;
+    color: #fff;
+    border: 1px solid #000;
+}
