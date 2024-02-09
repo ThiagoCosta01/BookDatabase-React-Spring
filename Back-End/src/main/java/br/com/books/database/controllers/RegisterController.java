@@ -34,8 +34,7 @@ public class RegisterController {
 	public ResponseEntity getUserById(@PathVariable(value = "id") Long id) {
 
 		Optional<UserModel> userModelOptional = userRepository.findById(id);
-		if (userModelOptional.isPresent())
-			return ResponseEntity.ok().body(userModelOptional);
+		if (userModelOptional.isPresent()) return ResponseEntity.ok().body(userModelOptional);
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuário não encontrado :(");
 	}
 

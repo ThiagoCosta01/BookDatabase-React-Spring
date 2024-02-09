@@ -25,9 +25,10 @@ public class SecurityConfig {
 				.authorizeHttpRequests( authorizeConfig -> {
 							authorizeConfig.requestMatchers(HttpMethod.POST, "/api/user/register").permitAll();
 							authorizeConfig.requestMatchers("/logout").permitAll();	
-							authorizeConfig.requestMatchers("/api/book").permitAll();
+							authorizeConfig.requestMatchers("/api/book").authenticated();
 							authorizeConfig.requestMatchers(HttpMethod.POST, "/api/user/login").permitAll();
 							authorizeConfig.requestMatchers(HttpMethod.GET, "/api/user/login").permitAll();
+							authorizeConfig.requestMatchers("/swagger-ui/*").permitAll();						
 							authorizeConfig.anyRequest().authenticated();
 						})
 				.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

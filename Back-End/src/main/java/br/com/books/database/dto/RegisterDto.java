@@ -1,5 +1,7 @@
 package br.com.books.database.dto;
 
-public record RegisterDto(String userName, String password) {
+import jakarta.validation.constraints.NotNull;
+
+public record RegisterDto(@NotNull String userName, @NotNull String password) {
 
 }
