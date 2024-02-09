@@ -1,4 +1,4 @@
-package br.com.books.database.domain.permission;
+package br.com.books.database.domain.model;
 
 import java.io.Serializable;
 import java.util.Objects;

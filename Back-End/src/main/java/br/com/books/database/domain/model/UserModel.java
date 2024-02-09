@@ -1,4 +1,4 @@
-package br.com.books.database.domain.user;
+package br.com.books.database.domain.model;
 
 
 import java.io.Serializable;
@@ -8,8 +8,9 @@ import java.util.List;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
-import br.com.books.database.domain.permission.PermissionModel;
+import br.com.books.database.dto.RegisterDto;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -58,6 +59,12 @@ import jakarta.persistence.Table;
 		//Constructors
 		public UserModel() {}
 
+		public UserModel(String userName, String password) {
+			this.userName = userName;
+			this.password = password;
+			
+			
+		}
 		//UserDetails
 		
 		public List<String> getRoles(){
