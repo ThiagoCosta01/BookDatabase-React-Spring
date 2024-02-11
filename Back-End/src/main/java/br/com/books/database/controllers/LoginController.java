@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.books.database.domain.configuration.AuthenticationService;
 import br.com.books.database.dto.AuthenticationDto;
+import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 
 @RestController
@@ -21,17 +23,23 @@ public class LoginController {
 	@Autowired
 	AuthenticationManager authenticationManager;
 	
+	@Autowired
+	AuthenticationService authenticationService;
+	
 	@GetMapping
 	public String login() {
 		return "Olá";
 	}
 	
 	@PostMapping
+	@Operation(description = "Login. Recebe o userName e a Senha, depois autentica com o authenticationManager.", method = "POST")
 	public ResponseEntity login(@RequestBody @Valid AuthenticationDto data) {
 		try {
 		var usernamePassword = new UsernamePasswordAuthenticationToken(data.userName(), data.password());
 		this.authenticationManager.authenticate(usernamePassword);
-		return ResponseEntity.ok("Autenticado");
+		String tokenGerado = authenticationService.obterToken(data);
+		return ResponseEntity.ok(tokenGerado);
+		
 		} catch (Exception e) {
 			 return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Falha na autenticação: " + e.getMessage());
 		}

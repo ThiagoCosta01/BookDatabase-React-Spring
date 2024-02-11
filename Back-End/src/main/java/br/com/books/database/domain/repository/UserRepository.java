@@ -11,5 +11,6 @@ import br.com.books.database.domain.model.UserModel;
 
 @Repository
 public interface UserRepository extends JpaRepository<UserModel, Long>{
-	UserDetails findByUserName(String userName);
+	
+	UserModel findByUserName(String userName);
 }

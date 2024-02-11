@@ -62,6 +62,10 @@ import jakarta.persistence.Table;
 		public UserModel(String userName, String password) {
 			this.userName = userName;
 			this.password = password;
+			this.accountNonExpired = true;
+			this.accountNonLocked = true;
+			this.credentialsNonExpired = true;
+			this.enabled = true;
 			
 			
 		}
