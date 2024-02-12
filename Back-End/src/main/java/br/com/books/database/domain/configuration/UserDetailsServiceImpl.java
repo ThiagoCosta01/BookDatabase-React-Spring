@@ -19,6 +19,9 @@ import br.com.books.database.dto.AuthenticationDto;
 @Service
 public class UserDetailsServiceImpl implements AuthenticationService{
 
+	private final Algorithm algorithm = Algorithm.HMAC256("chave-secreta");
+	private final String issuer = "books-database";
+	
 	@Autowired
 	UserRepository userRepository;
 	
@@ -35,12 +38,11 @@ public class UserDetailsServiceImpl implements AuthenticationService{
 		return geraTokenJwt(userModelInstance);
 	}
 	
+	@Override
 	public String geraTokenJwt(UserModel userModel) {
-		try {
-			Algorithm algorithm = Algorithm.HMAC256("chave-secreta");
-			
+		try {			
 			return JWT.create()
-					.withIssuer("books-database")
+					.withIssuer(issuer)
 					.withSubject(userModel.getUsername())
 					.withExpiresAt(geraDataExpiracao())
 					.sign(algorithm);			
@@ -53,5 +55,21 @@ public class UserDetailsServiceImpl implements AuthenticationService{
 		return LocalDateTime.now().plusHours(8).toInstant(ZoneOffset.of("-03:00"));
 	}
 	
-	//verifica token
+	//verifica token()
+	@Override
+	public String validaToken(String token) {
+		try {
+			JWT.require(algorithm)
+			.withIssuer(issuer)
+			.build()
+			.verify(token)
+			.getSubject();
+			
+			
+		} catch (Exception e) {
+			return e.getMessage();
+		}
+		
+		return "token";
+	}
 }
