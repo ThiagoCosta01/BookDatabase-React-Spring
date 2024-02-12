@@ -25,11 +25,11 @@ public class SecurityConfig {
 				.authorizeHttpRequests( authorizeConfig -> {
 							authorizeConfig.requestMatchers(HttpMethod.POST, "/api/user/register").permitAll();
 							authorizeConfig.requestMatchers("/logout").permitAll();	
-							authorizeConfig.requestMatchers("/api/book").authenticated();
+							authorizeConfig.requestMatchers("/api/book").permitAll();
 							authorizeConfig.requestMatchers(HttpMethod.POST, "/api/user/login").permitAll();
 							authorizeConfig.requestMatchers(HttpMethod.GET, "/api/user/login").permitAll();
-							authorizeConfig.requestMatchers("/swagger-ui/*").permitAll();						
-							authorizeConfig.anyRequest().authenticated();
+							authorizeConfig.requestMatchers("/swagger-ui/index.html#/*").permitAll();						
+							authorizeConfig.anyRequest().permitAll();
 						})
 				.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 				.build();		

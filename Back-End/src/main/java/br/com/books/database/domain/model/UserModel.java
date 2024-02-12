@@ -60,8 +60,16 @@ import jakarta.persistence.Table;
 		public UserModel() {}
 
 		public UserModel(String userName, String password) {
+			
+			
 			this.userName = userName;
 			this.password = password;
+			this.accountNonExpired = true;
+			this.accountNonLocked = true;
+			this.credentialsNonExpired = true;
+			this.enabled = true;
+			
+			
 			
 			
 		}
@@ -112,6 +120,34 @@ import jakarta.persistence.Table;
 		@Override
 		public boolean isEnabled() {
 			return this.enabled;
+		}
+
+		public Long getId() {
+			return id;
+		}
+
+		public void setId(Long id) {
+			this.id = id;
+		}
+
+		public String getUserName() {
+			return userName;
+		}
+
+		public void setUserName(String userName) {
+			this.userName = userName;
+		}
+
+		public List<PermissionModel> getPermissions() {
+			return permissions;
+		}
+
+		public void setPermissions(List<PermissionModel> permissions) {
+			this.permissions = permissions;
+		}
+
+		public void setPassword(String password) {
+			this.password = password;
 		}
 		
 		
